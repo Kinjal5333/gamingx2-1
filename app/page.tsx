@@ -6,7 +6,7 @@ import { Eye } from "lucide-react";
 
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaTiktok } from "react-icons/fa";
 const navigation = [
-  { name: "Games", href: "/projects" },
+  { name: "Games", href: "/" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -126,7 +126,7 @@ export default function Home() {
             <h3 className="text-lg font-semibold text-white">Quick Links</h3>
             <nav className="mt-3 space-y-2 space-x-4">
               <Link href="/about" className="hover:text-white">About</Link>
-              <Link href="/projects" className="hover:text-white">Community Guidelines</Link>
+              <Link href="/" className="hover:text-white">Community Guidelines</Link>
               <Link href="/contact" className="hover:text-white">Contact</Link>
             </nav>
           </div>
