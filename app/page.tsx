@@ -12,30 +12,33 @@ const navigation = [
 
 const allProjects = [
   {
-    title: "unkey.dev",
-    slug: "unkey",
-    date: "2023-07-01",
-    description:
-      "Unkey is an open source API Key management solution. It allows you to create, manage and validate API Keys for your users. It's built with security and speed in mind.",
+    title: "Restaurant Management",
+    slug: "G1",
+    status: "Live",
+    description: "Step into the fast-paced world of restaurant management! Serve customers, manage tables, take orders, and handle bills—all while keeping up with the rush. Deliver top-notch service on time to keep your restaurant thriving. Can you run the ultimate dining experience?",
     views: 24000,
+    image: "/imgs/resto.png",
+    link: "/games/resto/game/index.html",
   },
   {
-    title: "planetfall.io",
-    slug: "planetfall",
-    date: "2023-04-01",
-    description:
-      "I'm building a SAAS providing global latency monitoring for your APIs and websites from edge locations around the world. Have you ever wondered how fast your API is in any part of the world? Planetfall allows you to find out and monitor it continuously.",
+    title: "Fall Beans",
+    slug: "G2",
+    status: "Live",
+    description: "Fall Beans – Dive into a fun and vibrant racing adventure! Compete in colorful obstacle courses, overcome challenges, and race to the finish line. Stay ahead to avoid elimination and advance through each exciting level. Do you have what it takes to be the last bean standing?",
     views: 20000,
+    image: "/imgs/fallbeans.png",
+    link: "/games/fallBeans/Capx & Source/HTML5/index.html",
   },
   {
-    title: "highstorm.app",
-    slug: "highstorm",
-    date: "2023-05-01",
-    description:
-      "Simple, fast, open source custom event tracking.",
+    title: "Coming soon",
+    slug: "G3",
+    status: "Soon",
+    description: "Game 3 coming soon",
     views: 8800,
+    image: "/favicon.png",
   },
 ];
+
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center w-screen  overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black">
@@ -67,22 +70,20 @@ export default function Home() {
         Play exciting games on GamingX and Discover new thrills and unleash your imagination! 🚀
         </h2>
       </div>
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 mt-8 m-10">
+      <div className="grid grid-cols-2 gap-8 lg:grid-cols-3 mt-8 m-10">
   {allProjects.map((project) => (
     <Card key={project.slug}>
-      <Link href={`/projects/${project.slug}`}>
+      <Link href={`${project.link}`}>
         <article className="relative w-full h-full p-4 md:p-8">
-          <div className="flex items-center justify-between gap-2">
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            className="w-full h-48 object-cover rounded-lg"
+          />
+          <div className="flex items-center justify-between gap-2 mt-4">
             <div className="text-xs text-zinc-100">
-              {project.date ? (
-                <time dateTime={new Date(project.date).toISOString()}>
-                  {Intl.DateTimeFormat(undefined, {
-                    dateStyle: "medium",
-                  }).format(new Date(project.date))}
-                </time>
-              ) : (
-                <span>SOON</span>
-              )}
+                <span>{project.status}</span>
+              
             </div>
             <span className="flex items-center gap-1 text-xs text-zinc-500">
               <Eye className="w-4 h-4" />{" "}
@@ -98,15 +99,16 @@ export default function Home() {
           <p className="mt-4 leading-8 text-zinc-400">
             {project.description}
           </p>
-          <div className="absolute bottom-4 md:bottom-8">
+          {/* <div className="absolute bottom-4 md:bottom-8">
             <p className="hidden text-zinc-200 hover:text-zinc-50 lg:block">
               Read more <span aria-hidden="true">&rarr;</span>
             </p>
-          </div>
+          </div> */}
         </article>
       </Link>
+
     </Card>
-  ))}
+  ))} 
 </div>
 <footer className="bg-zinc-900 text-zinc-300 py-10 w-full">
       <div className="w-full mx-auto px-6 md:px-12 lg:px-16">

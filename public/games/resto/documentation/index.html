@@ -1,0 +1,545 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>Open Restaurant Documentation</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+    <link rel="stylesheet" href="assets/blueprint-css/prettify.css">
+	<script src="assets/js/prettify.js" defer></script>
+    <script>
+	window.onload = (function(){ prettyPrint(); });
+	</script>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;Open Restaurant&rdquo; Documentation by &ldquo;demonisblack&rdquo; v1.5</h3>
+		
+		<hr>
+		
+		<h1 class="center">&ldquo;Open Restaurant&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 27/4/2017<br>
+					By: demonisblack<br>
+					Email: <a href="mailto:demonisblack@gmail.com">demonisblack@gmail.com</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thank you for purchasing my game. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://codecanyon.net/user/demonisblack">here</a>. Thanks so much!</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+        	<li><a href="#introduction">Introduction</a></li>
+            <li><a href="#gettingStarted">Getting Started</a></li>
+            <li><a href="#htmlStructure">HTML Structure</a></li>
+			<li><a href="#cssFiles">CSS Files and Structure</a></li>
+			<li><a href="#javascript">JavaScript</a></li>
+            <li><a href="#gameFunctions">Game Functions</a></li>
+            <li><a href="#isometricMap">Isometric Map</a></li>
+            <li><a href="#gameAssets">Game Assets</a></li>
+            <li><a href="#compatibility">Compatibility</a></li>
+			<li><a href="#credits">Sources and Credits</a></li>
+            <li><a href="#changelog">Changelog</a></li>
+            <li><a href="#support">Support Policy</a></li>
+		</ol>
+		
+		<hr>
+        
+        <h3 id="introduction"><strong>A) Introduction</strong> - <a href="#toc">top</a></h3>
+        <p>Open Restaurant is a HTML5 game where you have to run a restaurant and bring your management skills to every diner! Survive the daily target to get highscore.</p>
+        
+        <p>The ZIP package contains the game with 1280×768 resolution that scales to fit the whole screen device, but it may not be perfectly full screen.</p>
+        
+        <p>
+        <strong>How To Play:</strong><br>
+        <img src="assets/images/instruction.jpg" />
+        </p>
+        
+        <hr>
+        
+        <h3 id="gettingStarted"><strong>B) Getting Started</strong> - <a href="#toc">top</a></h3>
+		<p>To install the game just upload folder 'game' to your server. The game won't run locally with some browser like Chrome due to some security mode.</p>        
+        <p>You need a website that runs PHP to make facebook share button work, and make sure to change Facebook Open Graph meta and Twitter meta in index.html, just replace [GAME_URL] to your game URL.</p>
+        <pre class="prettyprint linenums">
+        &lt;!-- for Facebook --&gt;
+        &lt;meta property=&quot;og:image&quot; content=&quot;[GAME_URL]/share.jpg&quot; /&gt;
+        &lt;meta property=&quot;og:url&quot; content=&quot;[GAME_URL]&quot; /&gt;
+        
+        &lt;!-- for Twitter --&gt;
+        &lt;meta name=&quot;twitter:image&quot; content=&quot;[GAME_URL]/share.jpg&quot; /&gt;
+        </pre>
+        
+        <p>You can easily customize game text and settings in game.js file
+        
+        <pre class="prettyprint linenums">
+//objects array list
+var objects_arr = [{src:'assets/interior_window.png', id:'window', regX:22, regY:270},
+                    {src:'assets/interior_table.png', id:'table', regX:43, regY:60},
+                    {src:'assets/interior_table_small.png', id:'table_small', regX:38, regY:57},
+                    {src:'assets/interior_chair_down.png', id:'chair_d', regX:20, regY:42},
+                    {src:'assets/interior_chair_up.png', id:'chair_u', regX:22, regY:55},
+                    {src:'assets/interior_chair_left.png', id:'chair_l', regX:21, regY:43},
+                    {src:'assets/interior_chair_right.png', id:'chair_r', regX:24, regY:52},
+                    {src:'assets/interior_kitchen.png', id:'kitchen', regX:27, regY:80},
+                    {src:'assets/interior_bar.png', id:'bar', regX:86, regY:106},
+                    {src:'assets/interior_cashier.png', id:'cashier', regX:18, regY:55},
+                    {src:'assets/interior_queue.png', id:'queueCounter', regX:22, regY:52},
+                    {src:'assets/interior_plant.png', id:'plant', regX:13, regY:42},
+                    {src:'assets/interior_fence.png', id:'fence', regX:33, regY:54}];
+        </pre>
+        <p><Strong>objects_arr</Strong> array load all the objects for isometric map, below is the explanation of each most important <Strong>objects_arr</Strong> array item:</p>
+        <ol>
+            <li><strong>src</strong> - image path</li>
+            <li><strong>id</strong> - uniqe id</li>
+            <li><strong>regX</strong> - center position x of the image file</li>
+            <li><strong>regY</strong> - center position y of the image file</li>
+        </ol>
+        
+        <pre class="prettyprint linenums">
+//objects place in position array list			
+var position_arr = [{id:'window', r:17, c:0, slot:[{r:17, c:0},{r:17, c:1},{r:17, c:2},{r:17, c:3},{r:17, c:4},{r:17, c:5},{r:17, c:6}], block:[{r:17, c:0},{r:17, c:1},{r:17, c:2},{r:17, c:3},{r:17, c:5},{r:17, c:6}]},
+                    {id:'table', r:6, c:1, block:[{r:6, c:1}], type:'table'},
+                    {id:'chair_d', r:7, c:1, block:[{r:7, c:1}], type:'chair', table:1},
+                    {id:'chair_u', r:5, c:1, block:[{r:5, c:1}], type:'chair', table:1},
+                    {id:'chair_l', r:6, c:0, block:[{r:6, c:0}], type:'chair', table:1},
+                    {id:'chair_r', r:6, c:2, block:[{r:6, c:2}], type:'chair', table:1},
+                    
+                    {id:'table', r:10, c:1, block:[{r:10, c:1}], type:'table'},
+                    {id:'chair_d', r:11, c:1, block:[{r:11, c:1}], type:'chair', table:6},
+                    {id:'chair_u', r:9, c:1, block:[{r:9, c:1}], type:'chair', table:6},
+                    {id:'chair_l', r:10, c:0, block:[{r:10, c:0}], type:'chair', table:6},
+                    {id:'chair_r', r:10, c:2, block:[{r:10, c:2}], type:'chair', table:6},
+                    
+                    {id:'table', r:14, c:1, block:[{r:14, c:1}], type:'table'},
+                    {id:'chair_d', r:15, c:1, block:[{r:15, c:1}], type:'chair', table:11},
+                    {id:'chair_u', r:13, c:1, block:[{r:13, c:1}], type:'chair', table:11},
+                    {id:'chair_l', r:14, c:0, block:[{r:14, c:0}], type:'chair', table:11},
+                    {id:'chair_r', r:14, c:2, block:[{r:14, c:2}], type:'chair', table:11},
+                    
+                    {id:'table_small', r:6, c:4, block:[{r:6, c:4}], type:'table'},
+                    {id:'chair_d', r:7, c:4, block:[{r:7, c:4}], type:'chair', table:16},
+                    {id:'chair_u', r:5, c:4, block:[{r:5, c:4}], type:'chair', table:16},
+                    
+                    {id:'table_small', r:6, c:6, block:[{r:6, c:6}], type:'table'},
+                    {id:'chair_d', r:7, c:6, block:[{r:7, c:6}], type:'chair', table:19},
+                    {id:'chair_u', r:5, c:6, block:[{r:5, c:6}], type:'chair', table:19},
+                    
+                    {id:'table_small', r:10, c:4, block:[{r:10, c:4}], type:'table'},
+                    {id:'chair_d', r:11, c:4, block:[{r:11, c:4}], type:'chair', table:22},
+                    {id:'chair_u', r:9, c:4, block:[{r:9, c:4}], type:'chair', table:22},
+                    
+                    {id:'table_small', r:10, c:6, block:[{r:10, c:6}], type:'table'},
+                    {id:'chair_d', r:11, c:6, block:[{r:11, c:6}], type:'chair', table:25},
+                    {id:'chair_u', r:9, c:6, block:[{r:9, c:6}], type:'chair', table:25},
+                    
+                    {id:'table_small', r:14, c:4, block:[{r:14, c:4}], type:'table'},
+                    {id:'chair_d', r:15, c:4, block:[{r:15, c:4}], type:'chair', table:28},
+                    {id:'chair_u', r:13, c:4, block:[{r:13, c:4}], type:'chair', table:28},
+                    
+                    {id:'table_small', r:14, c:6, block:[{r:14, c:6}], type:'table'},
+                    {id:'chair_d', r:15, c:6, block:[{r:15, c:6}], type:'chair', table:31},
+                    {id:'chair_u', r:13, c:6, block:[{r:13, c:6}], type:'chair', table:31},
+                    
+                    {id:'bar', r:3, c:1, slot:[{r:1, c:1},{r:2, c:1},{r:3, c:1},{r:3, c:2},{r:3, c:3},{r:3, c:4}], block:[{r:1, c:1},{r:2, c:1},{r:3, c:1},{r:3, c:2},{r:3, c:3},{r:3, c:4}], type:'bar'},
+                    {id:'cashier', r:3, c:3, slot:[{r:3, c:2},{r:3, c:3}], block:[], type:'cashier', exact:[{r:2, c:3}]},
+                    {id:'kitchen', r:0, c:4, slot:[{r:0, c:3},{r:0, c:4},{r:0, c:5}], block:[{r:0, c:0},{r:0, c:1},{r:0, c:2},{r:0, c:3},{r:0, c:4},{r:0, c:5},{r:0, c:6}], type:'kitchen'},
+                    {id:'queueCounter', r:18, c:3, block:[{r:18, c:3}], type:'queueCounter', exact:[{r:18, c:4}]},
+                    {id:'plant', r:1, c:0, block:[{r:1, c:0}], type:'plant'},
+                    {id:'fence', r:19, c:1, block:[], type:'fence'},
+                    {id:'fence', r:19, c:2, block:[], type:'fence'}];
+        </pre>
+        <p><Strong>position_arr</Strong> array place all the objects in isometric grid, below is the explanation of each most important <Strong>position_arr</Strong> array item:</p>
+        <ol>
+            <li><strong>id</strong> - id name from <Strong>objects_arr</Strong></li>
+            <li><strong>r</strong> - isometric row position</li>
+            <li><strong>c</strong> - isometric column position</li>
+            <li><strong>slot</strong> - an array list of row and column position for depth masking</li>
+            <li><strong>block</strong> - an array list of row and column position for non-walkable</li>
+            <li><strong>type</strong> - type of objects name for interation</li>
+            <li><strong>table</strong> - link to table, value should be array number (only work when type is 'chair')</li>
+            <li><strong>exact</strong> - an array list of row and column for exact positon when interact, instead of go nearby</li>
+        </ol>
+        
+        <pre class="prettyprint linenums">
+//items array list				
+var item_arr = [{src:'assets/item_food_up.png', id:'food_u', regX:26, regY:57},
+                {src:'assets/item_food_down.png', id:'food_d', regX:26, regY:57},
+                {src:'assets/item_food_left.png', id:'food_l', regX:26, regY:57},
+                {src:'assets/item_food_right.png', id:'food_r', regX:26, regY:57},
+                {src:'assets/item_food_up_clean.png', id:'food_u_clean', regX:26, regY:57},
+                {src:'assets/item_food_down_clean.png', id:'food_d_clean', regX:26, regY:57},
+                {src:'assets/item_food_left_clean.png', id:'food_l_clean', regX:26, regY:57},
+                {src:'assets/item_food_right_clean.png', id:'food_r_clean', regX:26, regY:57},
+                {src:'assets/icon_servefood.png', id:'icon_servefood', regX:25, regY:123},
+                {src:'assets/icon_indicator.png', id:'icon_indicator', regX:17, regY:90},
+                {src:'assets/icon_order.png', id:'icon_order', regX:37, regY:100},
+                {src:'assets/icon_bill.png', id:'icon_bill', regX:37, regY:100},
+                {src:'assets/icon_queue_1.png', id:'icon_queue_1', regX:37, regY:120},
+                {src:'assets/icon_queue_2.png', id:'icon_queue_2', regX:37, regY:120},
+                {src:'assets/icon_queue_3.png', id:'icon_queue_3', regX:37, regY:120},
+                {src:'assets/icon_queue_4.png', id:'icon_queue_4', regX:37, regY:120}];
+        </pre>
+        <p><Strong>item_arr</Strong> array place all the objects in isometric grid, below is the explanation of each most important <Strong>item_arr</Strong> array item:</p>
+        <ol>
+            <li><strong>src</strong> - image path</li>
+            <li><strong>id</strong> - uniqe id</li>
+            <li><strong>regX</strong> - center position x of the image file</li>
+            <li><strong>regY</strong> - center position y of the image file</li>
+        </ol>
+        
+        <pre class="prettyprint linenums">
+        //peoples array list			
+        var people_arr = [{src:'assets/human_Spritesheet8x1.png'},
+                        {src:'assets/human_f_a_Spritesheet3x3.png'},
+                        {src:'assets/human_f_b_Spritesheet3x3.png'},
+                        {src:'assets/human_f_c_Spritesheet3x3.png'},
+                        {src:'assets/human_m_a_Spritesheet3x3.png'},
+                        {src:'assets/human_m_b_Spritesheet3x3.png'},
+                        {src:'assets/human_m_c_Spritesheet3x3.png'}];
+        
+        //entrance array list
+        var entrace_arr = {enter:[{r:18, c:6},{r:19, c:6}], //people enter area
+                        queue:[{r:18, c:2},{r:18, c:1},{r:18, c:0},{r:19, c:0},{r:19, c:1},{r:19, c:2},{r:19, c:3},{r:19, c:4}],  //people queue area
+                        exit:[{r:18, c:6},{r:19, c:6}]};  //people exit area
+        
+        var gameScore = 40; //game score per person
+        var gameScoreDisplay = '$[NUMBER] / $[TARGET]'; //game score display
+                                            
+        var gameSetting = {moveSpeed:.2, //movement speed
+                        peopleTimer:15, //human enter restaurant timer
+                        menuTimer:5, //menu timer
+                        orderTimer:.2, //order timer
+                        cookTimer:10, //cooking timer
+                        dineTimer:18, //dine timer
+                        paymentTimer:.2}; //pay timer
+        
+        var level_setting = {dailyPeopleTimer:3, //daily increase (human enter restaurant)
+                            dailySpeedIncrease:.05, //daily increase (movement speed)
+                            dayTimer:60000, //daily timer
+                            scoreTarget:[80,160,560,960,1400,2000,2600,3300,4800,6000], //daily score target
+                            queueTotal_arr:[2,2,1,4,2,1,2,2,2,4,2,4,1,4]}; //total queue array list
+            
+        
+        //Social share, [SCORE] will replace with game score
+        var shareEnable = true; //toggle share
+        var shareTitle = 'Highscore on Open Restaurant Game is $[SCORE] in total [DAY] days';//social share score title
+        var shareMessage = '$[SCORE] in [DAY] days is mine new highscore on Open Restaurant Game! Try it now!'; //social share score message
+        </pre>
+        <p>
+        The sound can be easily disabled to avoid compatibility issues in sound.js file:
+        <pre class="prettyprint linenums">
+        var enableMobileSound = true;
+        </pre>
+        </p>
+        
+        <p>
+        The mobile rotate instruction can be easily change in mobile.js file:
+        <pre class="prettyprint linenums">
+        var rotateInstruction = true; //enable rotate instruction for mobile
+        var forPortrait=false; //for portrait only, set false for landscape mode
+        </pre>
+        </p>
+        <hr>
+		
+		<h3 id="htmlStructure"><strong>C) HTML Structure</strong> - <a href="#toc">top</a></h3>
+        <p>The page start with the loader wrapper that covering the whole screen in the body. It shows loader progress when calls the function <strong>initPreload()</strong></p>
+        <pre class="prettyprint linenums">
+        &lt;!-- PERCENT LOADER START--&gt;
+    	&#x3C;div id=&#x22;mainLoader&#x22;&#x3E;&#x3C;img src=&#x22;assets/loader.png&#x22; /&#x3E;&#x3C;br/&#x3E;&#x3C;span&#x3E;0&#x3C;/span&#x3E;&#x3C;/div&#x3E;
+        &lt;!-- PERCENT LOADER END--&gt;
+        </pre>
+        
+        <p>This section is for browser not support page when calls the function <strong>checkBrowser()</strong>. It shows error message when detect the browser does not support canvas.</p>
+        <pre class="prettyprint linenums">
+        &lt;!-- BROWSER NOT SUPPORT START--&gt;
+        &lt;div id=&quot;notSupportHolder&quot;&gt;
+            &lt;div class=&quot;notSupport&quot;&gt;YOUR BROWSER ISN&#39;T SUPPORTED.&lt;br/&gt;PLEASE UPDATE YOUR BROWSER IN ORDER TO RUN THE GAME&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- BROWSER NOT SUPPORT END--&gt;
+        </pre>
+        
+        <p>Device rotate instruction page when calls the function <strong>checkMobileOrientation()</strong>. It shows rotate instruction when device is in portrait view.</p>
+        <pre class="prettyprint linenums">
+        &lt;!-- ROTATE INSTRUCTION START--&gt;
+        &lt;div id=&quot;rotateHolder&quot;&gt;
+            &lt;div class=&quot;mobileRotate&quot;&gt;
+				&#x3C;div class=&#x22;rotateImg&#x22;&#x3E;&#x3C;img src=&#x22;assets/rotate.png&#x22; /&#x3E;&#x3C;/div&#x3E;
+                &lt;div class=&quot;rotateDesc&quot;&gt;ROTATE YOUR DEVICE &lt;br/&gt;TO LANDSCAPE&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- ROTATE INSTRUCTION END--&gt;
+        </pre>
+        
+        <p>Follow by one canvas tag in the body. The game start initiatie by calls the main function of the game <strong>initMain()</strong>.</p>
+        <pre class="prettyprint linenums">
+        &lt;!-- CANVAS START--&gt;
+        &lt;div id=&quot;canvasHolder&quot;&gt;
+            &lt;canvas id=&quot;gameCanvas&quot; width=&quot;1280&quot; height=&quot;768&quot;&gt;&lt;/canvas&gt;
+        &lt;/div&gt;
+        &lt;!-- CANVAS END--&gt;
+        </pre>
+		<hr>
+
+		<h3 id="cssFiles"><strong>D) CSS Files and Structure</strong> - <a href="#toc">top</a></h3>
+		<p>I'm using two CSS files in this game. The first one is a generic reset file. Many browser interpret the default behavior of html elements differently. By using a general reset CSS file, we can work round this. This file also contains some general styling, such as anchor tag colors, font-sizes, etc. Keep in mind, that these values might be overridden somewhere else in the file.</p>
+		<p>The second file contains all of the specific stylings for the page.</p>
+        <hr>
+		
+        
+		<h3 id="javascript"><strong>E) JavaScript</strong> - <a href="#toc">top</a></h3>
+		
+		<p>This game using Javascript files below.</p>
+		
+		<ol>
+			<li>
+                <strong>jQuery</strong> is a cross-platform JavaScript library designed to simplify the client-side scripting of HTML.<br/><br/>
+            </li>
+            
+            <li>
+                <strong>Detect Mobile Browser</strong> is a open source scripts to detect mobile browsers and phones.<br/><br/>
+            </li>
+            
+            <li>
+                <strong>CreateJs plugin</strong> is a suite of modular libraries and tools which work together to create interactive content on open web technologies via HTML5.<br/><br/>
+            </li>
+            
+            <li>
+                <strong>TweenMax</strong> is an extremely fast, lightweight, and flexible animation tool that serves as the foundation of the GreenSock Animation Platform (GSAP).<br/><br/>
+            </li>
+            
+            <li>
+                <strong>PathFinding.js</strong> is a comprehensive path-finding library in javascript.<br/><br/>
+            </li>
+            
+            <li>
+                <strong>The game have the following js files</strong>
+                <ul>
+                	<li><strong>init.js :</strong> check if browser or device support <br/><br/></li>
+                    <li><strong>loader.js :</strong> loader to load all game images<br/><br/></li>
+                    <li><strong>main.js :</strong> initiate game setup and browser resize function<br/><br/></li>
+                    <li><strong>mobile.js :</strong> mobile orientation change<br/><br/></li>
+                    <li><strong>canvas.js :</strong> canvas setup and resize<br/><br/></li>
+                    <li><strong>sound.js :</strong> sound event<br/><br/></li>
+                    <li><strong>game.js :</strong> game play and logics<br/><br/></li>
+                    <li><strong>plugins.js :</strong> additonal useful plugins<br/><br/></li>
+                </ul>
+            </li>
+		</ol>
+        
+        <p>Complete game flow:</p>
+		<ol>
+        	<li>The index.html file start init.js for browser detection</li>
+            <li>If browser is supported, init loader.js to start load asserts with loading progress</li>
+            <li>For mobile the rotate instruction shows when device is in portrait view, detect by mobile.js</li>
+            <li>When all asserts contained in "/assets" folder are loaded, the game start construct canvas.js and main.js from game.js thats shows game menu</li>
+            <li>If user click begin button in game menu, the game will start with game.js</li>
+            <li>If user tap on the menu counter when customer in queue line, pop message appear with number for table</li>
+            <li>If user tap on the empty table, manager will bring customers to the table</li>
+            <li>If user tap on the table with food order pop message, manager will take food order</li>
+            <li>If user tap on the kitchen with food deliver pop message, manager will take food and immediate display indicator on which table should the food serve to</li>
+            <li>While the manager is hand with food, no interaction with other objects until the food is serve</li>
+            <li>If user tap on the table with payment pop message, manager accepet payment and customers will leave, at the same time game will score</li>
+            <li>If user tap on the table with customers left, manager will clean the table</li>
+            <li>If user hti the score and time's up, a new day will start with new score target</li>
+            <li>If user didn't hit the daily target when time is up, the game will end</li>
+            <li>If user click replay button at game result, it will restart game</li>
+        </ol>
+		
+		<hr>
+        
+        <h3 id="gameFunctions"><strong>F) Game Functions</strong> - <a href="#toc">top</a></h3>
+		
+		<p>The most important functions used for page.</p>
+        <ul>
+        	<li>
+                <strong>checkBrowser()</strong><br/>
+                This function is runs for browser detection<br/><br/>
+            </li>
+            
+            <li>
+                <strong>checkMobileEvent()</strong><br/>
+                This function runs for mobile event<br/><br/>
+            </li>
+        </ul>
+        
+        <p>The most important functions used for game.</p>
+        <ul>
+        	<li>
+                <strong>initMain()</strong><br/>
+                This function build canvas<br/><br/>
+            </li>
+            
+            <li>
+                <strong>startGame()</strong><br/>
+                This function start gameplay<br/><br/>
+            </li>
+            
+            <li>
+                <strong>stopGame()</strong><br/>
+                This function stop gameplay<br/><br/>
+            </li>
+            
+            <li>
+                <strong>saveGame()</strong><br/>
+                This function save game score<br/><br/>
+            </li>
+        </ul>
+		<hr>
+        
+        <h3 id="isometricMap"><strong>G) Isometric Map</strong> - <a href="#toc">top</a></h3>
+        <p>You can find isometric settings in game.js:
+        </p>
+        <pre class="prettyprint linenums">
+var isometricData = {guide:false, x:256, y:353, row:20, column:7, width:32.3, height:19, xCorrect:29, yCorrect:16.8, array:[]};
+        </pre>
+        <p>Below is the explanation of each most important <Strong>isometricData</Strong> item:</p>
+        <ol>
+            <li><strong>guide</strong> - true/false to enable isometric grid</li>
+            <li><strong>x</strong> - position x</li>
+            <li><strong>y</strong> - position y</li>
+            <li><strong>row</strong> - total row</li>
+            <li><strong>column</strong> - total column</li>
+            <li><strong>width</strong> - isometric width</li>
+            <li><strong>height</strong> - isometric height</li>
+            <li><strong>xCorrect</strong> - xCorrect</li>
+            <li><strong>yCorrect</strong> - yCorrect</li>
+            <li><strong>array</strong> - array list to store isometric grid</li>
+        </ol>
+        <p>And how isometric world in grid build with row and column:</p>
+        <img src="assets/images/isometric_guide.jpg" />
+        <hr>
+        
+        <h3 id="gameAssets"><strong>H) Game Assets</strong> - <a href="#toc">top</a></h3>
+        <p>The game contain 'design' folder which include following:
+        <ol>
+        	<li>openrestaurant_1280x768.psd - with layer folders below
+                <ul>
+                <li>Option</li>
+                <li>Result</li>
+                <li>Game</li>
+                <li>Landing</li>
+                </ul>
+        	</li>
+        </ol>
+        </p>
+        
+        <p>The game contain 'animation' folder which include following:
+        <ol>
+        	<li>human.fla</li>
+            <li>human_f_a.fla</li>
+            <li>human_f_b.fla</li>
+            <li>human_f_c.fla</li>
+            <li>human_m_a.fla</li>
+            <li>human_m_b.fla</li>
+            <li>human_m_c.fla</li>
+        </ol>
+        </p>
+        <p>The folder 'assets' in 'game' folder contains all the images of the game that can be replaced. Is better to have the same size of the old ones if you want to reskin the game graphic without coding.</p>
+        <hr>
+        
+        <h3 id="compatibility"><strong>I) Compatibility</strong> - <a href="#top">top</a></h3>
+		
+		<p>This game is build for Desktop browsers that support HTML5 canvas. Any mobile/tablet should work in landscape view, but they are not officially supported.</p>
+		<hr>
+		
+		<h3 id="credits"><strong>J) Sources and Credits</strong> - <a href="#toc">top</a></h3>
+		
+		<p>I've used the following font and sound files as listed.</p>
+		
+		<ul>
+			<li><a href="http://www.dafont.com/roboto.font" target="_blank">Roboto</a> from file Google Android Design</li>
+            <li><a href="http://www.freepik.com/free-vector/business-organization-situation_832118.htm#term=business%20organization%20illustration&page=1&position=4" target="_blank">Business organization situation</a> from file freepik</li>
+            <li><a href="http://www.freepik.com/free-vector/business-organization-illustration_832117.htm#term=business%20organization%20illustration&page=1&position=0" target="_blank">
+Business organization illustration</a> from file freepik</li>
+            <li><a href="http://www.freepik.com/free-vector/isometric-interior-restaurant_898060.htm#term=isometric%20interior%20restaurant&page=1&position=2" target="_blank">Isometric interior restaurant</a> from file freepik</li>
+            <li><a href="http://www.freepik.com/free-vector/isometric-view-of-a-mobile-application-for-shopping_949589.htm#term=isometric%20view%20mobile%20application%20shopping&page=1&position=0" target="_blank">Isometric view of a mobile application for shopping</a> from file freepik</li>
+            
+            <li><a href="https://www.vecteezy.com/vector-art/104783-isometric-pixel-type" target="_blank">Isometric Pixel Type</a> from file vecteezy</li>
+            <li><a href="https://www.freesound.org/people/CommanderRobot/sounds/264828/" target="_blank">Text-Message or Videogame-Jump</a> from file CommanderRobot</li>
+            <li><a href="https://www.freesound.org/people/Griphen/sounds/366355/" target="_blank">Elebator button 2.wav</a> from file Griphen</li>
+            <li><a href="https://www.freesound.org/people/AlaskaRobotics/sounds/221515/" target="_blank">service bell ring</a> from file AlaskaRobotics</li>
+            
+            <li><a href="https://www.freesound.org/people/kiddpark/sounds/201159/" target="_blank">Cash Register</a> from file kiddpark</li>
+            <li><a href="https://www.freesound.org/people/semccab/sounds/154383/" target="_blank">window wipe.wav</a> from file semccab</li>
+            
+            <li><a href="https://www.freesound.org/people/newagesoup/sounds/339344/" target="_blank">rotating-menu-sub-hit-at-end.wav</a> from file newagesoup</li>
+            <li><a href="https://www.freesound.org/people/VincentM400/sounds/249616/" target="_blank">Function Fail</a> from file VincentM400</li>
+            <li><a href="https://www.freesound.org/people/semccab/sounds/154383/" target="_blank">plate slide over table.wav</a> from file hinzbeat</li>
+            <li><a href="http://www.flashkit.com/loops/Easy_Listening/Instrumental/marimba-melody-150527191506.html" target="_blank">Marimba Melody
+</a> from file Jack Strait</li>
+		</ul>
+		
+		<hr>
+        
+        <h3 id="changelog"><strong>J) Changelog</strong> - <a href="#toc">top</a></h3>
+		Version 1.5
+		<ul>
+			<li>Update Google to Whatsapp share</li>
+		</ul>
+        
+		Version 1.4
+		<ul>
+			<li>Fixed audio not playing in Chrome browser</li>
+		</ul>
+
+        Version 1.3
+		<ul>
+			<li>Added exit button</li>
+		</ul>
+        
+        Version 1.2
+		<ul>
+			<li>Fixed iOS Safari fullscreen</li>
+		</ul>
+        
+        Version 1.1
+		<ul>
+			<li>Fixed objects overlay depth issue</li>
+		</ul>
+		<hr>
+		
+		<h3 id="support"><strong>K) Support Policy</strong> - <a href="#toc">top</a></h3>
+
+		<p>Check out support policy <a href="http://demonisblack.com/code/support-policy/">here</a>.</p>
+		<hr>
+		
+		<p>Once again, thank you so much for purchasing this game, if you have a more general question relating to the games on CodeCanyon, you might consider visiting the item page in the <a href="https://codecanyon.net/item/open-restaurant-html5-game/19853239/support">"Support"</a> section.</p>
+		<p>If you like the game, please take a moment to rate it. Thanks!   <img src="assets/images/rate.png" /><img src="assets/images/rate.png" /><img src="assets/images/rate.png" /><img src="assets/images/rate.png" /><img src="assets/images/rate.png" /></p>
+        
+        <p>
+        	<h3>How to rate an item on CodeCanyon?</h3>
+            If you want to rate one of our items on CodeCanyon please do it like this:
+            <ol>
+                <li>Login to CodeCanyon</li>
+                <li>Open the menu on the top right, and click onto the link “Downloads” which shows a list of your downloads</li>
+                <li>Rate our items using the stars</li>
+                <li>That’s it. Thank you very much!</li>
+            </ol>
+        </p>
+		
+		<p class="append-bottom alt large"><strong>demonisblack</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>
