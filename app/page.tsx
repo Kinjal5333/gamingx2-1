@@ -41,7 +41,7 @@ const allProjects = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center w-screen  overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black">
+    <div className="flex flex-col items-center justify-center   overflow-x-hidden overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black ">
       <nav className="my-16 animate-fade-in">
         <ul className="flex items-center justify-center gap-4">
           {navigation.map((item) => (
@@ -65,12 +65,12 @@ export default function Home() {
       </h1>
 
       <div className="hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-      <div className="my-16 text-center animate-fade-in">
-        <h2 className="text-md text-zinc-500 ">
+      <div className="my-16 text-center animate-fade-in flex justify-center items-center">
+        <h2 className="text-md text-zinc-500 lg:w-full w-[92%]">
         Play exciting games on GamingX and Discover new thrills and unleash your imagination! 🚀
         </h2>
       </div>
-      <div className="grid grid-cols-2 gap-8 lg:grid-cols-3 mt-8 m-10">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 mt-8 m-10">
   {allProjects.map((project) => (
     <Card key={project.slug}>
       <Link href={`${project.link}`}>
